@@ -1,0 +1,265 @@
+<html>
+<head>
+<style>
+.navbar-custom {
+    border-radius: 0 !important;
+    background-color: #2196F3;
+    color: #FFFFFF;
+}
+.navbar-custom > a {
+    width: 100%;
+    color: #FFFFFF;
+    text-align: center;
+}
+.navbar-custom > a:hover {
+    color: #FFFFFF;
+}
+.list-group-item {
+    padding-bottom: 6px !important;
+    padding-top: 6px !important;
+    font-size: 10px;
+}
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 0px;
+    margin-top: -4px;
+    width: 52px;
+    height: 28px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+    display: none;
+}
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 2px;
+    bottom: 4px;
+    top: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.wrapper {
+    text-align: center;
+}
+.button {
+    position: absolute;
+    top: 50%;
+}
+.row {
+    display: flex;
+    align-items: center;
+}
+input:checked + .slider {
+    background-color: #2196F3;
+}
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+input:checked + .slider:before {
+    -webkit-transform: translateX(24px);
+    -ms-transform: translateX(24px);
+    transform: translateX(24px);
+}
+/* Rounded sliders */
+.slider.round {
+    border-radius: 28px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+.btn-plus {
+    color: #FFFFFF;
+    background-color: #2196F3;
+    border-color: #2196F3;
+}
+.btn-plus:hover, .btn-plus:focus, .btn-plus:active, .btn-plus.active {
+    color: #FFFFFF !important;
+    background-color: #0d8aee;
+    border-color: #0c7cd5;
+}
+.btn-plus.disabled:hover, .btn-plus.disabled:focus, .btn-plus.disabled:active, .btn-plus.disabled.active, .btn-plus[disabled]:hover, .btn-plus[disabled]:focus, .btn-plus[disabled]:active, .btn-plus[disabled].active, fieldset[disabled] .btn-plus:hover, fieldset[disabled] .btn-plus:focus, fieldset[disabled] .btn-plus:active, fieldset[disabled] .btn-plus.active {
+    color: #FFFFFF;
+    background-color: #2196F3;
+    border-color: #2196F3;
+}
+.btn-plus, .btn-danger {
+    width: 35px;
+    padding: 3px 0px 3px 0px !important;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+	 TAG = "樂存錢包自動登入";
+	 VERSION = 1;
+          $(function() {
+      		  $("#version").html(TAG + " v" + VERSION);
+
+			        localStorage.setItem(TAG + '-version', VERSION);
+			  
+              $("#accountPlus").click(function() {
+                  if ($("#account").val() >= 2) {
+                      return;
+                  }
+                  $("#account").val(parseInt($("#account").val()) + 1);
+              });
+              $("#accountMinus").click(function() {
+                  if ($("#account").val() <= 1) {
+                      return;
+                  }
+                  $("#account").val(parseInt($("#account").val()) - 1);
+              });
+			  $('#onRunScript').click(function() {
+				  runMyScript();
+        	  });
+			  $("#account1").change(function(){
+				  localStorage.setItem('account1', $("#account1").val());
+			  });
+			    $("#pass1").change(function(){
+				  localStorage.setItem('pass1', $("#pass1").val());
+			  });
+			  $("#account2").change(function(){
+				  localStorage.setItem('account2', $("#account2").val());
+			  });
+			  $("#pass2").change(function(){
+				  localStorage.setItem('pass2', $("#pass2").val());
+			  });
+			  initSettings();
+          });
+
+	    function initSettings() {
+		  if (localStorage === undefined) {
+			console.log("localStorage undefined");
+			return;
+		  }
+
+		  var account1 = localStorage.getItem('account1');
+		  if(account1){
+			  console.log("account1 in storage is: "+account1);
+			  $("#account1").val(account1);
+		  }else{
+			  console.log("no account1 in storage");
+		  }
+		  var pass1 = localStorage.getItem('pass1');
+		  if(pass1){
+			  console.log("pass1 in storage is: "+account1);
+			  $("#pass1").val(pass1);
+		  }else{
+			  console.log("no pass1 in storage");
+		  }
+
+		  var account2 = localStorage.getItem('account2');
+		  if(account2){
+			  console.log("account2 in storage is: "+account2);
+			  $("#account2").val(account2);
+		  }else{
+			  console.log("no account2 in storage");
+		  }
+		  var pass2 = localStorage.getItem('pass2');
+		  if(pass2){
+			  console.log("pass2 in storage is: "+pass2);
+			  $("#pass2").val(pass2);
+		  }else{
+			  console.log("no pass2 in storage");
+		  }
+		}
+
+        function runMyScript(){
+			  var account_num = parseInt($("#account").val());
+			  console.log("account_num is : "+account_num);
+			  var account = 1;
+			  var pass = 1;
+			  switch(account_num){
+				case 1:
+					account = localStorage.getItem('account1');
+					pass = localStorage.getItem('pass1');
+					break;
+				case 2:
+					account = localStorage.getItem('account2');
+					pass = localStorage.getItem('pass2');
+					break;
+				  default:
+					console.log("default");
+					break;
+			  }
+			  if(account === undefined || account === 'undefined' || account == ''){
+				  console.log('get account from localStorage is undefined');
+				  return;
+			  }
+			  if(pass === undefined || pass === 'undefined' || pass == ''){
+				  console.log('get pass from localStorage is undefined');
+				  return;
+			  }
+			  console.log('start("' + account + '", "' + pass + '");');
+			  JavaScriptInterface.runScript('start("' + account + '", "' + pass + '");');
+		  }
+
+          function onEvent(eventType) {
+              console.log(eventType);
+              if (eventType == 'OnPlayClick') {
+				  console.log('OnPlayClick');
+				  runMyScript();
+              } else if (eventType == 'OnPauseClick') {
+				  console.log('OnPauseClick');
+                  JavaScriptInterface.runScript('stop();');
+              } else if (eventType == 'OnSettingClick') {
+                  console.log('OnSettingClick');
+              }
+          }
+          function onLog(message) {
+              console.log(message);
+          }
+
+      </script>
+</head>
+<body>
+<nav class="navbar navbar-custom" role="navigation"> <a id="version" class="navbar-brand"></a> </nav>
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item"> 切換帳號
+      <div class="pull-right" style="margin-top:-4px">
+        <input id="account" style="width: 45px; text-align: center;" min="0" type="number" value="1" readonly>
+        <button id="accountMinus" type="button" class="btn btn-danger">-1</button>
+        <button id="accountPlus" type="button" class="btn btn-plus">+1</button>
+      </div>
+    </li>
+    <div class="row center-block">
+      <li class="list-group-item"> 第1個樂存帳號
+        <input id="account1" type="text" style="display: block; width:100%;" placeholder="帳號">
+        <input id="pass1" type="text" style="display: block; width:100%;" placeholder="密碼">
+      </li>
+    </div>
+    <div class="row center-block">
+      <li class="list-group-item"> 第2個樂存帳號
+        <input id="account2" type="text" style="display: block; width:100%;" placeholder="帳號">
+        <input id="pass2" type="text" style="display: block; width:100%;" placeholder="密碼">
+      </li>
+    </div>
+  </ul>
+</div>
+<div class="wrapper">
+  <button id="onRunScript" class="btn btn-warning">開始執行</button>
+</div>
+</body>
+</html>

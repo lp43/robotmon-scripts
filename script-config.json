@@ -137,6 +137,13 @@
       "description": "<div>公主踢騎士</div>",
       "packageName": "jp.gungho.kerihimequest",
       "downloadURL": "https://github.com/r2-studio/robotmon-scripts/raw/master/scripts/com.steven.princesspunt/index.zip"
+    },
+    "com.hardworking.LeCun": {
+      "title": "樂存錢包",
+      "versionCode": 1,
+      "description": "<div>樂存錢包快速工具</div>",
+      "packageName": "com.h157945806.qsa",
+      "downloadURL": "https://github.com/lp43/robotmon-scripts/raw/feature/LeCun/scripts/com.hardworking.LeCun/index.zip"
     }
   },
   "libs": {

@@ -190,8 +190,11 @@ function StartLogin(account, password) {
 
   safeSleep(1000);
 
+  //按下鍵盤上輸入方式切換
+  tapImage(0, 1800, 370, 2075, 'keyboard_input_type.png', 0.7);
+  
   //按下鍵盤上數字切換
-  tapImage(0, 1800, 200, 2075, 'field_keyboard_num.png', 0.7);
+  tapImage(0, 1800, 200, 2075, 'keyboard_num.png', 0.7);
 }
 
 function stop() {
@@ -202,4 +205,4 @@ function stop() {
   }
 }
 
-// start('account', 'pass');
+// start('acc', 'pass');

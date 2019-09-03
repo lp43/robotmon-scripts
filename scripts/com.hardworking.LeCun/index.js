@@ -161,7 +161,7 @@ function StartLogin(account, password) {
   // 登入帳號
   tapImage(176, 742, 637, 861, 'field_account.png', 0.7);
   safeSleep(1000);
-  rbm.typing(account)
+  rbm.typing(account);
 
   safeSleep(500);
 
@@ -192,7 +192,7 @@ function StartLogin(account, password) {
 
   //按下鍵盤上輸入方式切換
   tapImage(0, 1800, 370, 2075, 'keyboard_input_type.png', 0.7);
-  
+
   //按下鍵盤上數字切換
   tapImage(0, 1800, 200, 2075, 'keyboard_num.png', 0.7);
 }
@@ -204,5 +204,3 @@ function stop() {
     rbm.log('[LeCun] Stop');
   }
 }
-
-// start('acc', 'pass');
